@@ -9,19 +9,33 @@
     <title>ToDo</title>
 </head>
 <body>
-    <div class="todo">
-        <h1 class="todo__header">todos</h1>
-        <ul class="todo__list">
-            <li class="todo__list-item">
-                task 1
-            </li>
-            <li class="todo__list-item">
-                task 2
-            </li>
-            <li class="todo__list-item">
-                task 3
-            </li>
-        </ul>
+  <div class="todo">
+    <h1 class="todo__header">todos</h1>
+    <input
+      type="text"
+      placeholder="What needs to be done?"
+      class="todo__input"
+    >
+    <button type="button" class="todo__button">+</button>
+    <div class="todo__modal">
+      <form action="#" class="todo__modal-content">
+        <p>Creation date</p>
+        <input type="date" class="todo__modal-creation" required>
+        <p>Todo</p>
+        <input type="text" class="todo__modal-text" placeholder="What needs to be done?" required>
+        <p>Expiration date</p>
+        <input type="date" class="todo__modal-expiration" required>
+        <button type="submit" class="todo__modal-save">
+          Save
+        </button>
+        <button type="button" class="todo__modal-close">
+          Close
+        </button>
+      </form>
     </div>
+    <ul class="todo__list">
+    </ul>
+  </div>
+  <script type="text/javascript" src="scripts/main.js"></script>
 </body>
 </html>
