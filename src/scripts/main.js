@@ -1,75 +1,63 @@
-const todoList = document.querySelector(`.todo__list`);
-function toLocalStorage () {
-    localStorage.setItem('todos', todoList.innerHTML)
-}
+import {TodoList} from "./TodoList.js";
+import {Todo} from "./Todo.js";
+import {createDate} from "./createDate.js";
+import {Modal} from "./Modal.js";
 
-function addNewTodo (text) {
-    const createDate = (nextDay) => {
-        const fullDate = new Date();
-        if(nextDay) {
-            fullDate.setDate(fullDate.getDate() + 1);
-        }
-        return `${fullDate.getFullYear()}-${fullDate.getMonth() + 1}-${fullDate.getDate()}`;
-    }
-    const todo = {
-        creationTime: createDate(),
-        text: text,
-        expirationTime: createDate(true),
-    }
-    const newTodo = document.createElement("li" );
-    newTodo.className = "todo__list-item"
-    newTodo.innerHTML = `<span>${todo.creationTime} </span><span>${todo.text} </span><span>${todo.expirationTime}</span>`;
-    todoList.appendChild(newTodo);
-    toLocalStorage();
-}
-
-const todoInput = document.querySelector('.todo__input')
+const todoList = new TodoList('.todo__list');
+const todoInput = document.querySelector('.todo__input');
 
 todoInput.addEventListener('keypress', (event) => {
     if(event.keyCode === 13) {
-        if (! /^[a-zA-Z0-9]+$/.test(todoInput.value)) {
+        if (! /^[a-zA-Zа-яА-Я0-9 ]+$/.test(todoInput.value)) {
             todoInput.classList.add('mistake');
             return;
         }
-        addNewTodo(todoInput.value);
+
+        const todo = new Todo(createDate(), todoInput.value, createDate(true));
+
+        todoList.addNewTodo(todo);
         todoInput.value = '';
         todoInput.classList.remove('mistake');
     }
 })
 
 if(localStorage.getItem('todos')) {
-    todoList.innerHTML = localStorage.getItem('todos');
+    todoList.$el.innerHTML = localStorage.getItem('todos');
 }
 
-const modal = document.querySelector('.todo__modal');
-const plusButton = document.querySelector('.todo__button');
-const form = document.querySelector('.todo__modal-content');
-const closeButton = document.querySelector('.todo__modal-close')
+const modal = new Modal('.todo__modal')
+const plusButton = new Modal('.todo__button');
+const closeButton = new Modal('.todo__modal-close');
+const saveButton = new Modal('.todo__modal-save');
 
-plusButton.onclick = function () {
-    modal.style.display = "block";
+const modalInputText = document.querySelector('.todo__modal-text');
+const modalCreationDate = document.querySelector('.todo__modal-creation');
+const modalExpirationDate = document.querySelector('.todo__modal-expiration');
+
+plusButton.$el.onclick = function (){
+    modalCreationDate.value = createDate();
+    modalExpirationDate.value = createDate(true);
+    modal.show()
+}
+
+closeButton.$el.onclick = function (){
+    modal.hide();
+}
+
+saveButton.$el.onclick = function () {
+    if (! /^[a-zA-Zа-яА-Я0-9 ]+$/.test(modalInputText.value)) {
+        return;
+    }
+
+    const todo = new Todo(modalCreationDate.value, modalInputText.value, modalExpirationDate.value);
+
+    todoList.addNewTodo(todo);
+    modalInputText.value = '';
+    modal.hide();
 }
 
 window.onclick = function (event) {
-    if (event.target === modal) {
-        modal.style.display = "none";
+    if(event.target === modal.$el) {
+        modal.hide();
     }
-}
-
-closeButton.onclick = function () {
-    modal.style.display = "none";
-}
-
-form.onsubmit = function () {
-    const todo = {
-        creationTime: document.querySelector('.todo__modal-creation').value,
-        text: document.querySelector('.todo__modal-text').value,
-        expirationTime: document.querySelector('.todo__modal-expiration').value,
-    }
-    const newTodo = document.createElement("li" );
-    newTodo.className = "todo__list-item"
-    newTodo.innerHTML = `<span>${todo.creationTime} </span><span>${todo.text} </span><span>${todo.expirationTime}</span>`;
-    todoList.appendChild(newTodo);
-    toLocalStorage();
-    modal.style.display = "none";
 }
