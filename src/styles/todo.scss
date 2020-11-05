@@ -33,6 +33,7 @@
     position: absolute;
     font-size: 45px;
     right: 0;
+    top: 0;
     background: rgba(0, 0, 0, 0.01);
     border: none;
     cursor: pointer;
@@ -74,15 +75,30 @@
       display: flex;
       justify-content: space-between;
       position: relative;
-      padding: 15px 15px 15px 30px;
+      padding: 15px 30px 15px 30px;
       font-size: 16px;
       line-height: 1.2;
       border-bottom: 1px solid #ededed;
+      cursor: pointer;
     }
 
     &-checkbox {
       position: absolute;
       left: 8px;
+
+      &:checked~span{
+        text-decoration: line-through;
+        color: lightgray;
+      }
+    }
+
+    &-remove {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      &:hover {
+        color: red;
+      }
     }
   }
 }

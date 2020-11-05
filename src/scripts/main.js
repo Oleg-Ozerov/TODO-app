@@ -1,26 +1,24 @@
-import { todoList, todoInput, modalInputText, modalExpirationDate, saveButton, modalCreationDate, closeButton, plusButton} from "./DOMelements.js";
-import {
-    todoInputHandler,
-    modalCreationDateHandler,
-    modalExpirationDateHandler,
-    modalInputTextHandler,
-    plusButtonHandler,
-    closeButtonHandler,
-    saveButtonHandler, modalWindowCloser
-} from "./callbacks.js";
+import {TodoList} from "./TodoList.js";
+import {Todo} from "./Todo.js";
 
-todoInput.addEventListener('keypress', todoInputHandler);
 
-modalCreationDate.addEventListener('change', modalCreationDateHandler);
-modalExpirationDate.addEventListener('change', modalExpirationDateHandler)
-modalInputText.addEventListener('change', modalInputTextHandler)
+export let addTodo = new Event('add', {bubbles: true})
 
-plusButton.$el.addEventListener('click', plusButtonHandler);
-closeButton.$el.addEventListener('click', closeButtonHandler);
-saveButton.$el.addEventListener('click', saveButtonHandler);
+window.addEventListener('load', () => {
+    if(localStorage.getItem('todos')) {
+        window.todoArr =  getTodosFromLocalStorage()
+    } else {
+        window.todoArr = [];
+    }
+    console.log(window.todoArr)
+    const todoList = new TodoList('.todo');
+    todoList.initionalRender();
 
-window.addEventListener('click', modalWindowCloser);
+} )
 
-if (localStorage.getItem('todos')) {
-    todoList.$el.innerHTML = localStorage.getItem('todos');
+function getTodosFromLocalStorage(){
+    return JSON.parse(localStorage.getItem('todos')).map(el => {
+        return new Todo(el)
+    });
 }
+
