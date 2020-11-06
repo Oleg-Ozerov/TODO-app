@@ -102,6 +102,7 @@ import {Modal} from "./Modal.js";
                 const todoId = +event.target.id.slice(7);
                 const result = window.todoArr.filter(todo => todo.id !== todoId)
                 window.todoArr = [...result];
+                localStorage.setItem('todos', JSON.stringify(window.todoArr))
                 this.clearList();
                 this.renderItems();
             })
