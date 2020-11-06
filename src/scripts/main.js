@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
     } else {
         window.todoArr = [];
     }
-    console.log(window.todoArr)
     const todoList = new TodoList('.todo');
     todoList.initionalRender();
 

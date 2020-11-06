@@ -94,8 +94,16 @@ import {Modal} from "./Modal.js";
         window.todoArr.forEach((el) => {
             this.list.appendChild(el.getNewTodoMarkup());
             const todoCheckbox = el.getCheckboxElement()
+            const todoRemover = el.getRemoveElement();
             todoCheckbox.addEventListener('click', () => {
                 el.isCheckedTogler();
+            })
+            todoRemover.addEventListener('click', (event) => {
+                const todoId = +event.target.id.slice(7);
+                const result = window.todoArr.filter(todo => todo.id !== todoId)
+                window.todoArr = [...result];
+                this.clearList();
+                this.renderItems();
             })
         })
     }

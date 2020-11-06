@@ -16,10 +16,13 @@ export class Todo {
                             <span>${this.creationTime} </span>
                             <span>${this.text} </span>
                             <span>${this.expirationTime}</span>
-                            <span class="todo__list-remove">X</span>
+                            <span class="todo__list-remove" id="remover${this.id}">X</span>
                          </label>`
-        console.log(this.id);
         return newTodo;
+    }
+
+    getRemoveElement () {
+        return  document.getElementById(`remover${this.id}`);
     }
 
     getCheckboxElement () {
