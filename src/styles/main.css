@@ -13,11 +13,39 @@
   text-align: center;
   color: rgba(175, 47, 47, 0.15);
 }
+.todo__sort {
+  background-image: url("../images/thin-1561_sort_descending_order-512.png");
+  position: absolute;
+  left: 5px;
+  top: 15px;
+  background-size: contain;
+  display: block;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  z-index: 4;
+}
+.todo__sortList {
+  width: 510px;
+  display: none;
+  top: 60px;
+  z-index: 3;
+  position: absolute;
+  background-color: #fefefe;
+  list-style: none;
+}
+.todo__sortList-item {
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+.todo__sortList-item:hover {
+  color: firebrick;
+}
 .todo__input {
   font-size: 24px;
   width: 100%;
   box-sizing: border-box;
-  padding: 16px 16px 16px 16px;
+  padding: 16px 16px 16px 40px;
   border: none;
   background: rgba(0, 0, 0, 0.01);
   box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
@@ -53,6 +81,7 @@
 }
 .todo__modal-content {
   background-color: #fefefe;
+  height: 300px;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -82,10 +111,20 @@
   text-decoration: line-through;
   color: lightgray;
 }
+.todo__list-edit {
+  position: absolute;
+  right: 5px;
+  background-image: url(../images/SoftwareIcons-68-512.png);
+  background-position: center;
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+}
 .todo__list-remove {
   position: absolute;
-  right: 10px;
-  top: 15px;
+  left: 560px;
+  bottom: 15px;
+  cursor: pointer;
 }
 .todo__list-remove:hover {
   color: red;

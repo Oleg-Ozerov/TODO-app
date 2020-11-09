@@ -2,7 +2,7 @@ import {TodoList} from "./TodoList.js";
 import {Todo} from "./Todo.js";
 
 
-export let addTodo = new Event('add', {bubbles: true})
+export let addTodo = new Event('add', {bubbles: true});
 
 window.addEventListener('load', () => {
     if(localStorage.getItem('todos')) {
