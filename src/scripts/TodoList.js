@@ -299,7 +299,10 @@ import {plusHandler} from "./main.js";
             document.addEventListener('add', () => {
                 this.clearList();
                 this.renderItems(window.todoArr);
-                this.currentArray = [...window.todoArr]
+                this.currentArray = [...window.todoArr];
+                this.itemsLeft = window.todoArr.length;
+                this.removeButtonsBlock();
+                this.createButtonsBlock();
             })
         }
 
