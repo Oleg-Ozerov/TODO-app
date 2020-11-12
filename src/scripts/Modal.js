@@ -15,7 +15,6 @@ export class Modal {
     constructor(todo = {}) {
         this.todo = todo;
         this.markup = this.createModal();
-        this.buttonListen = this.buttonListener();
         this.isModalForEditing = false;
     }
 
@@ -55,17 +54,11 @@ export class Modal {
             <button type="button" id="closeButtonId" class="todo__modal-close">
               Close
             </button>
-          </form>`
+          </form>`;
         newModal.classList.add('todo__modal')
         newModal.setAttribute('id', 'modalWindow');
 
         return newModal;
-    }
-
-    buttonListener () {
-        document.addEventListener('plusButton', () => {
-            }
-        )
     }
 
     addEventListeners () {
@@ -90,18 +83,20 @@ export class Modal {
             expirationTime: this.todo.expirationTime,
         });
 
-        if(newTodo.creationTime > newTodo.expirationTime) {
+        if (newTodo.creationTime > newTodo.expirationTime) {
             this.elements.creationDate.classList.add(wrongInputValue);
             this.elements.expirationDate.classList.add(wrongInputValue);
+
             return;
         }
 
         if (!inputFilterReg.test(this.elements.inputText.value)) {
             this.elements.inputText.classList.add(wrongInputValue);
+
             return ;
         }
 
-        if(!this.isModalForEditing) {
+        if (!this.isModalForEditing) {
             window.todoArr = [...window.todoArr, newTodo];
         }
 
@@ -113,7 +108,7 @@ export class Modal {
     modalWindowHandler({ target }) {
         const modalWindow = document.getElementById('modalWindow');
 
-        if(target === modalWindow) {
+        if (target === modalWindow) {
             this.hide();
         }
     }
@@ -138,7 +133,8 @@ export class Modal {
 
     creationDateHandler (event) {
         this.todo.creationTime = event.target.value;
-        if(this.todo.creationTime <= this.elements.expirationDate.value) {
+
+        if (this.todo.creationTime <= this.elements.expirationDate.value) {
             this.elements.creationDate.classList.remove(wrongInputValue);
             this.elements.expirationDate.classList.remove(wrongInputValue);
         }
@@ -151,7 +147,8 @@ export class Modal {
 
     expirationDateHandler (event) {
         this.todo.expirationTime = event.target.value;
-        if(this.todo.expirationTime > this.elements.creationDate.value) {
+
+        if (this.todo.expirationTime > this.elements.creationDate.value) {
             this.elements.creationDate.classList.remove(wrongInputValue);
             this.elements.expirationDate.classList.remove(wrongInputValue);
         }

@@ -23,7 +23,7 @@ import {plusHandler} from "./main.js";
         }
 
         displayToggler () {
-            if(this.display === 'none') {
+            if (this.display === 'none') {
                 this.display = 'block';
             } else this.display = 'none';
 
@@ -33,7 +33,7 @@ import {plusHandler} from "./main.js";
         createSortButton () {
             const newSortButton = document.createElement('span');
 
-            newSortButton.classList.add('todo__sort')
+            newSortButton.classList.add('todo__sort');
             newSortButton.addEventListener('click', this.displayTogglerBind);
 
             this.$el.appendChild(newSortButton);
@@ -61,7 +61,6 @@ import {plusHandler} from "./main.js";
             sortList.classList.add('todo__sortList');
             this.$el.appendChild(sortList);
             this.addSortListEventListeners();
-
 
             return sortList;
         }
@@ -152,7 +151,6 @@ import {plusHandler} from "./main.js";
                 <button id="completedButton" class="todo__block-button">Completed</button>
                 <button id ="clearCompletedButton" class="todo__block-button">Clear completed</button>`;
 
-
             newBlock.setAttribute('id', 'buttonsBlock')
             newBlock.classList.add('todo__block')
             this.$el.appendChild(newBlock);
@@ -230,7 +228,7 @@ import {plusHandler} from "./main.js";
 
 
         addNewTodo ({keyCode, target}) {
-            if(keyCode === enterKey && inputFilterReg.test(target.value)) {
+            if (keyCode === enterKey && inputFilterReg.test(target.value)) {
                 const newTodo = new Todo({ text: target.value });
 
                 window.todoArr = [...window.todoArr, newTodo];
@@ -253,7 +251,6 @@ import {plusHandler} from "./main.js";
         validateInput ({ target }) {
             if (!inputFilterReg.test(target.value)) {
                 this.classList.add('mistake');
-
             } else {this.classList.remove('mistake')}
 
             if(!target.value) {
@@ -269,7 +266,7 @@ import {plusHandler} from "./main.js";
             plusButton.classList.add('todo__button');
             plusButton.addEventListener('click', (event) => {
                 event.target.dispatchEvent(plusHandler)
-            })
+            });
             plusButton.addEventListener('click', this.showModal);
             this.$el.appendChild(plusButton);
 
@@ -336,6 +333,7 @@ import {plusHandler} from "./main.js";
 
         editElementAddListener (el) {
             const editElement = el.getEditElement();
+
             editElement.addEventListener('click', (event) => {
                 event.preventDefault();
                 this.removeCurrentModal();
@@ -377,6 +375,7 @@ import {plusHandler} from "./main.js";
 document.addEventListener('plusHandler', () => {
     const oldModal = document.querySelector('.todo__modal');
     const parent = oldModal.parentElement;
+
     oldModal.parentNode.removeChild(oldModal);
 
     const newModal = new Modal();
@@ -384,5 +383,4 @@ document.addEventListener('plusHandler', () => {
     parent.appendChild(newModal.markup);
     newModal.show();
     newModal.addEventListeners();
-
 })

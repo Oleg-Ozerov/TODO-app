@@ -3,13 +3,13 @@ import {testNumberForCreateDate} from "./constanses.js";
 export function createDate (isNextDay) {
     const fullDate = new Date();
 
-    if(isNextDay) {
+    if (isNextDay) {
         fullDate.setDate(fullDate.getDate() + 1);
     }
 
     let dd = fullDate.getDate();
 
-    if(dd < testNumberForCreateDate) {
+    if (dd < testNumberForCreateDate) {
         dd = '0' + dd;
     }
 
