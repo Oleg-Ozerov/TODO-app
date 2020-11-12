@@ -1,17 +1,32 @@
-import {TodoList} from "./TodoList.js";
 import {createDate} from "./createDate.js";
-import {enterKey, inputFilterReg, wrongInputValue} from "./constanses.js";
 import {Todo} from "./Todo.js";
 import {addTodo} from "./main.js";
+import {inputFilterReg, wrongInputValue} from "./constanses.js";
 
 export class Modal {
+    saveButtonHandlerBind = this.saveButtonHandler.bind(this);
+    modalWindowHandlerBind = this.modalWindowHandler.bind(this);
+    modalInputHandlerBind = this.modalInputHandler.bind(this);
+    creationDateHandlerBind = this.creationDateHandler.bind(this);
+    expirationDateHandlerBind = this.expirationDateHandler.bind(this);
+    closeButtonHandlerBind = this.closeButtonHandler.bind(this);
+    elements = {
+        creationDate: '',
+        inputText: '',
+        expirationDate: '',
+        saveButton: '',
+        closeButton: '',
+    };
+
     constructor(todo = {}) {
         this.todo = todo;
         this.markup = this.createModal();
+        this.isModalForEditing = false;
     }
 
     createModal () {
         const newModal = document.createElement('div');
+
         newModal.innerHTML = `
           <form action="#" class="todo__modal-content">
             <label for="creationDate">Creation date</label>
@@ -45,7 +60,7 @@ export class Modal {
             <button type="button" id="closeButtonId" class="todo__modal-close">
               Close
             </button>
-          </form>`
+          </form>`;
         newModal.classList.add('todo__modal')
         newModal.setAttribute('id', 'modalWindow');
 
@@ -53,24 +68,45 @@ export class Modal {
     }
 
     addEventListeners () {
-        const creationDate = document.getElementById('creationDate');
-        const inputText = document.getElementById('inputTask');
-        const expirationDate = document.getElementById('expirationDate');
-        const saveButton = document.getElementById('saveButtonId');
-        const closeButton = document.getElementById('closeButtonId');
+        this.elements.creationDate = document.getElementById('creationDate');
+        this.elements.inputText = document.getElementById('inputTask');
+        this.elements.expirationDate = document.getElementById('expirationDate');
+        this.elements.saveButton = document.getElementById('saveButtonId');
+        this.elements.closeButton = document.getElementById('closeButtonId');
 
-        creationDate.addEventListener('change', this.creationBind);
-        inputText.addEventListener('change', this.inputBind);
-        expirationDate.addEventListener('change', this.expirationBind);
-        saveButton.addEventListener('click', this.bindSave);
-        window.addEventListener('click', this.bindModalWindow);
-        closeButton.addEventListener('click', this.bindCloseButton);
+        this.elements.creationDate.addEventListener('change', this.creationDateHandlerBind);
+        this.elements.inputText.addEventListener('keyup', this.modalInputHandlerBind);
+        this.elements.expirationDate.addEventListener('change', this.expirationDateHandlerBind);
+        this.elements.saveButton.addEventListener('click', this.saveButtonHandlerBind);
+        window.addEventListener('click', this.modalWindowHandlerBind);
+        this.elements.closeButton.addEventListener('click', this.closeButtonHandlerBind);
     }
 
-    bindSave = this.saveButtonHandler.bind(this);
+    validateInput () {
+        const { inputText } = this.elements;
+
+        return !inputFilterReg.test(inputText.value)
+    }
+
     saveButtonHandler (event) {
-        if(!this.todo.text) {
-            const newTodo = new Todo({text: this.todo.text, creationTime: this.todo.creationTime, expirationTime: this.todo.expirationTime});
+        const { text, creationTime, expirationTime } = this.todo;
+        const { creationDate, expirationDate, inputText } = this.elements;
+        const newTodo = new Todo({ text, creationTime, expirationTime });
+
+        if (newTodo.creationTime > newTodo.expirationTime) {
+            creationDate.classList.add(wrongInputValue);
+            expirationDate.classList.add(wrongInputValue);
+
+            return;
+        }
+
+        if (this.validateInput()) {
+            inputText.classList.add(wrongInputValue);
+
+            return ;
+        }
+
+        if (!this.isModalForEditing) {
             window.todoArr = [...window.todoArr, newTodo];
         }
 
@@ -79,15 +115,13 @@ export class Modal {
         this.hide();
     }
 
-    bindModalWindow = this.modalWindowHandler.bind(this);
-    modalWindowHandler({target}) {
+    modalWindowHandler({ target }) {
         const modalWindow = document.getElementById('modalWindow');
 
-        if(target === modalWindow) {
+        if (target === modalWindow) {
             this.hide();
         }
     }
-
 
     getCreationDate() {
         const { creationTime } = this.todo;
@@ -96,37 +130,47 @@ export class Modal {
     }
 
     getInputText () {
-        const {text} = this.todo;
+        const { text } = this.todo;
 
         return text ? text : '';
     }
 
     getExpirationDate() {
-        const {expirationTime} = this.todo;
+        const { expirationTime } = this.todo;
 
         return expirationTime ? expirationTime : createDate(true);
     }
 
-    creationBind = this.creationDateHandler.bind(this)
     creationDateHandler (event) {
         this.todo.creationTime = event.target.value;
+
+        const { expirationDate, creationDate } = this.elements
+
+        if (this.todo.creationTime <= expirationDate.value) {
+            creationDate.classList.remove(wrongInputValue);
+            expirationDate.classList.remove(wrongInputValue);
+        }
     }
 
-    inputBind = this.modalInputHandler.bind(this);
     modalInputHandler (event) {
         this.todo.text = event.target.value;
+        this.elements.inputText.classList.remove(wrongInputValue);
     }
 
-    expirationBind = this.expirationDateHandler.bind(this);
     expirationDateHandler (event) {
         this.todo.expirationTime = event.target.value;
+
+        const { creationDate, expirationDate } = this.elements;
+
+        if (this.todo.expirationTime > creationDate.value) {
+            creationDate.classList.remove(wrongInputValue);
+            expirationDate.classList.remove(wrongInputValue);
+        }
     }
 
-    bindCloseButton = this.closeButtonHandler.bind(this);
     closeButtonHandler () {
         this.hide()
     }
-
 
     show() {
         this.markup.style.display = 'block';
@@ -134,7 +178,5 @@ export class Modal {
 
     hide() {
         this.markup.style.display='none';
-
     }
-
 }

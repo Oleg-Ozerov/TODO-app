@@ -68,6 +68,24 @@
 .todo__button:hover {
   transform: scale(1.2);
 }
+.todo__block {
+  background-color: #f5f5f5;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.todo__block-counter {
+  font-style: italic;
+  display: block;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+.todo__block-button {
+  cursor: pointer;
+  font-style: italic;
+}
+.todo__block-button:hover {
+  background-color: antiquewhite;
+}
 .todo__modal {
   display: none;
   position: fixed;
@@ -81,12 +99,14 @@
 }
 .todo__modal-content {
   background-color: #fefefe;
-  height: 300px;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
   z-index: 99999;
+}
+.todo__modal-text {
+  outline: none;
 }
 .todo__list {
   margin: 0;
