@@ -6,14 +6,14 @@ export let addTodo = new Event('add', {bubbles: true});
 export const plusHandler = new Event('plusHandler', {bubbles: true});
 
 window.addEventListener('load', () => {
-    isListAlreadyCreated();
+    handleListAlreadyCreated();
     const todoList = new TodoList('.todo');
 
     todoList.initionalRender();
 
 } )
 
-function isListAlreadyCreated () {
+function handleListAlreadyCreated () {
     localStorage.getItem('todos') ? window.todoArr = getTodosFromLocalStorage() : window.todoArr = [];
 }
 
