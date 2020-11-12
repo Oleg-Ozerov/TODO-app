@@ -1,0 +1,172 @@
+.todo {
+  background: #fff;
+  margin: 130px 0 40px;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+  0 25px 50px 0 rgba(0, 0, 0, 0.1);
+
+  &__header {
+    position: absolute;
+    top: -190px;
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+  }
+  &__sort {
+    background-image: url("../images/thin-1561_sort_descending_order-512.png");
+    position: absolute;
+    left: 5px;
+    top: 15px;
+    background-size: contain;
+    display: block;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    z-index: 4;
+  }
+
+  &__sortList {
+    width: 510px;
+    display: none;
+    top: 60px;
+    z-index: 3;
+    position: absolute;
+    background-color: #fefefe;
+    list-style: none;
+
+    &-item{
+      padding-bottom: 15px;
+      cursor: pointer;
+
+      &:hover {
+        color: firebrick;
+      }
+    }
+  }
+
+  &__input {
+    font-size: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 16px 16px 40px;
+    border: none;
+    background: rgba(0, 0, 0, 0.01);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+
+    &::placeholder {
+      font-style: italic;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    font-size: 45px;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.01);
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    color: rgba(175, 47, 47, 0.15);
+    transition-duration: 1s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &__block {
+    background-color: #f5f5f5;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    &-counter {
+      font-style: italic;
+      display: block;
+      padding-top: 10px;
+      padding-left: 15px;
+    }
+
+    &-button {
+      cursor: pointer;
+      font-style: italic;
+
+      &:hover {
+        background-color: antiquewhite;
+      }
+    }
+  }
+
+  &__modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+
+    &-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      z-index: 99999;
+    }
+
+    &-text {
+      outline: none;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      padding: 15px 30px 15px 30px;
+      font-size: 16px;
+      line-height: 1.2;
+      border-bottom: 1px solid #ededed;
+      cursor: pointer;
+    }
+
+    &-checkbox {
+      position: absolute;
+      left: 8px;
+
+      &:checked~span{
+        text-decoration: line-through;
+        color: lightgray;
+      }
+    }
+
+    &-edit {
+      position: absolute;
+      right: 5px;
+      background-image: url(../images/SoftwareIcons-68-512.png);
+      background-position: center;
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+    }
+
+    &-remove {
+      position: absolute;
+      left: 560px;
+      bottom: 15px;
+      cursor: pointer;
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}

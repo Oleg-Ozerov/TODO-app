@@ -32,23 +32,40 @@
   <component name="ChangeListManager">
     <list default="true" id="719d550b-44b1-45be-bedf-91d5eb60b8a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/Todo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/Todo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/TodoList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/constanses.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/constanses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/createDate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/createDate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/main.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/todo.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/todo.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="feature/US-008-add-the-possibility-to-filter-items" />
-      </map>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
     </option>
+  </component>
+  <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1jsP1pzItFgVb2foDP63ABmN2je" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TODO-app/src/index.html" useBuiltInWebServerPort="true">
@@ -57,11 +74,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="719d550b-44b1-45be-bedf-91d5eb60b8a1" name="Default Changelist" comment="" />
@@ -70,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604655067728</updated>
       <workItem from="1604655068936" duration="20365000" />
-      <workItem from="1604910725582" duration="44302000" />
+      <workItem from="1604910725582" duration="40936000" />
     </task>
     <task id="LOCAL-00001" summary="US006: Added the possibility to hide/unhide done items,&#10;US007: Added the possibility to sort items">
       <created>1604928274296</created>
@@ -79,29 +95,11 @@
       <option name="project" value="LOCAL" />
       <updated>1604928274296</updated>
     </task>
-    <task id="LOCAL-00002" summary="US008: pre-final version">
-      <created>1605180335898</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1605180335898</updated>
-    </task>
-    <task id="LOCAL-00003" summary="US008: pre-final version">
-      <created>1605182280190</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1605182280190</updated>
-    </task>
-    <task id="LOCAL-00004" summary="US008: fixed code style">
-      <created>1605183334688</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1605183334688</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -117,8 +115,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="US006: Added the possibility to hide/unhide done items,&#10;US007: Added the possibility to sort items" />
-    <MESSAGE value="US008: pre-final version" />
-    <MESSAGE value="US008: fixed code style" />
-    <option name="LAST_COMMIT_MESSAGE" value="US008: fixed code style" />
+    <option name="LAST_COMMIT_MESSAGE" value="US006: Added the possibility to hide/unhide done items,&#10;US007: Added the possibility to sort items" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="127" key="Vcs.Push.Dialog.v2" timestamp="1604928280966">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="127" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1604928280966" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1604672038927">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1604672038927" />
   </component>
 </project>
