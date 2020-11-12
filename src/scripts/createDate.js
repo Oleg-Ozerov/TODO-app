@@ -1,3 +1,5 @@
+import {testNumberForCreateDate} from "./constanses.js";
+
 export function createDate (isNextDay) {
     const fullDate = new Date();
 
@@ -7,14 +9,15 @@ export function createDate (isNextDay) {
 
     let dd = fullDate.getDate();
 
-    if(dd < 10) {
+    if(dd < testNumberForCreateDate) {
         dd = '0' + dd;
     }
 
     let mm = fullDate.getMonth() + 1;
 
-    if (mm < 10) {
+    if (mm < testNumberForCreateDate) {
         mm = '0' + mm;
     }
+
     return `${fullDate.getFullYear()}-${mm}-${dd}`;
 }
